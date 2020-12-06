@@ -1,0 +1,6 @@
+{
+    "port": "COM11",
+    "board": "arduino:avr:uno",
+    "programmer": "AVRISP mkII",
+    "sketch": "Arduino-Relay.ino"
+}
