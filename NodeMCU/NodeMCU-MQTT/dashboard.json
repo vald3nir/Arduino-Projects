@@ -1,0 +1,70 @@
+[
+    {
+        "id": "b7c20aa5a96e7fe7",
+        "type": "debug",
+        "z": "5359fe910ed67528",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "5c80033fb7ee73df",
+        "type": "mqtt in",
+        "z": "5359fe910ed67528",
+        "name": "",
+        "topic": "vald3nir/sensor/status/",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "69051998c732a66d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 220,
+        "y": 180,
+        "wires": [
+            [
+                "b7c20aa5a96e7fe7"
+            ]
+        ]
+    },
+    {
+        "id": "69051998c732a66d",
+        "type": "mqtt-broker",
+        "name": "broker.hivemq.com",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
