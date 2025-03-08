@@ -1,0 +1,55 @@
+#include <Arduino.h>
+#include <SPI.h>
+#include <nRF24L01.h>
+#include <RF24.h>
+
+/*
+NRF24L01	        ESP32
+VCC (3.3V)	        3.3V (não 5V!)
+GND	                GND
+CSN (Chip Select)	GPIO 5
+CE (Enable)	        GPIO 4
+SCK (Clock)	        GPIO 18
+MOSI (Data Out)	    GPIO 23
+MISO (Data In)	    GPIO 19
+IRQ (Interrupção)	(não obrigatório)
+*/
+
+#define CE_PIN 9
+#define CSN_PIN 10
+
+RF24 radio(CE_PIN, CSN_PIN);
+
+void setup()
+{
+    Serial.begin(115200);
+    radio.begin();
+    radio.setPALevel(RF24_PA_HIGH); // Potência máxima
+    // radio.setPALevel(RF24_PA_MAX, true);
+    radio.stopListening(); // Modo de transmissão
+
+    // radio.setAutoAck(false);
+    // radio.setRetries(0, 0);
+    // radio.setPayloadSize(5);
+    // radio.setAddressWidth(3);
+    // radio.setDataRate(RF24_2MBPS);
+    // radio.setCRCLength(RF24_CRC_DISABLED);
+    // radio.printPrettyDetails();
+}
+
+void loop()
+{
+    byte payload[32];
+    memset(payload, 0xFF, sizeof(payload)); // Pacotes cheios de dados aleatórios
+
+    while (true)
+    {
+        for (int i = 0; i <= 79; i++)
+        {
+            radio.setChannel(i); // Ajuste para testar diferentes canais Bluetooth (0 a 125)
+            Serial.println("Enviando pacotes...");
+            radio.write(payload, sizeof(payload)); // Envia pacotes continuamente
+            delayMicroseconds(100);                // Pequeno atraso para sobrecarregar o canal
+        }
+    }
+}
